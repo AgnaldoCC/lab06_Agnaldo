@@ -1,27 +1,26 @@
 package lp2.lab06;
 
+import java.util.HashSet;
+
 public class Jogo {
 	private String nome;
 	private double preco;
-	private String tipo;
 	private int maiorScore;
 	private int qtdJogada;
 	private int zerouJogo;
+	private HashSet<String> estilos;
 
-	public Jogo(String nome, double preco, String tipo) {
+	public Jogo(String nome, double preco) {
 		this.nome = nome;
 		this.preco = preco;
-		this.tipo = tipo;
+		this.maiorScore = 0;
+		this.qtdJogada = 0;
+		this.zerouJogo = 0;
+		estilos = new HashSet<String>();
 	}
-
-	public void registraJogada(int score, boolean zerou) {
-		if (zerou == true) {
-			zerouJogo += 1;
-		}
-		qtdJogada += 1;
-		if (score > maiorScore) {
-			maiorScore = score;
-		}
+	
+	public void adicionaEstilo(String novoEstilo){
+		estilos.add(novoEstilo);
 	}
 
 	public String getNome() {
@@ -40,12 +39,20 @@ public class Jogo {
 		this.preco = preco;
 	}
 
-	public String getTipo() {
-		return tipo;
+	public void setMaiorScore(int novoScore){
+		novoScore = maiorScore;
 	}
-
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
+	
+	public void registraJogada(int score, boolean zerou) {
+		if (zerou == true) {
+			zerouJogo += 1;
+		}
+		
+		qtdJogada += 1;
+		
+		if (score > maiorScore) {
+			setMaiorScore(score);
+		}
 	}
 	
 }
