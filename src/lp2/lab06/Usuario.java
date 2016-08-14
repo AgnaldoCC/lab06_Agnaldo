@@ -7,12 +7,14 @@ public class Usuario {
 	protected String nomeLogin;
 	private ArrayList<Jogo> jogos;
 	protected double dinheiro;
+	protected int x2p;
 
-	public Usuario(String nome, String nomeLogin, double dinheiro) {
+	public Usuario(String nome, String nomeLogin, double dinheiro, int x2p) {
 		this.nomeLogin = nomeLogin;
 		this.nome = nome;
 		jogos = new ArrayList<Jogo>();
 		this.dinheiro = dinheiro;
+		this.x2p = x2p;
 
 	}
 
@@ -40,11 +42,19 @@ public class Usuario {
 		this.dinheiro = dinheiro;
 	}
 
+	public int getX2p() {
+		return x2p;
+	}
+
+	public void setX2p(int x2p) {
+		this.x2p = x2p;
+	}
+
 	public void adicionaDinheiro(double novo) {
 		dinheiro += novo;
 	}
-	
-	public void adicionaJogo(Jogo jogo){
+
+	public void adicionaJogo(Jogo jogo) {
 		jogos.add(jogo);
 	}
 
