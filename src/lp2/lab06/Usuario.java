@@ -1,18 +1,30 @@
 package lp2.lab06;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 
 public class Usuario {
-	protected String nome;
-	protected String nomeLogin;
-	private ArrayList<Jogo> jogos;
-	protected double dinheiro;
+	private String nome;
+	private String nomeLogin;
+	private HashSet<Jogo> jogos;
+	private double dinheiro;
 	protected int x2p;
+	protected double desconto;
 
-	public Usuario(String nome, String nomeLogin, double dinheiro, int x2p) {
+	public Usuario(String nome, String nomeLogin, double dinheiro, int x2p) throws Exception {
+		if (nome == null || nome.isEmpty()) {
+			throw new Exception("Nome não pode ser nulo ou vazio");
+		}
+
+		if (nomeLogin == null || nomeLogin.isEmpty()) {
+			throw new Exception("Nome de login não pode ser nulo ou vazio");
+		}
+
+		if (dinheiro < 0) {
+			throw new Exception("Saldo em dinheiro não pode ser negativo");
+		}
 		this.nomeLogin = nomeLogin;
 		this.nome = nome;
-		jogos = new ArrayList<Jogo>();
+		jogos = new HashSet<Jogo>();
 		this.dinheiro = dinheiro;
 		this.x2p = x2p;
 
@@ -56,6 +68,30 @@ public class Usuario {
 
 	public void adicionaJogo(Jogo jogo) {
 		jogos.add(jogo);
+	}
+
+	public void registraJogada(String nomeJogo, int score, boolean zerou) throws Exception {
+		for (Jogo jogo : jogos) {
+			if (jogo.getNome().equalsIgnoreCase(nomeJogo)) {
+				jogo.registraJogada(score, zerou);
+			}
+		}
+		throw new Exception("Jogo não encontrado");
+
+	}
+	
+	public void compraJogo(Jogo jogo) throws Exception{
+		if (jogo == null){
+			throw new Exception("Jogo não pode ser nulo");
+		}
+		
+		if (dinheiro < jogo.getPreco()){
+			throw new Exception("Dinheiro insuficiente para comprar esse jogo");
+		}
+		
+		this.setDinheiro(this.dinheiro - (jogo.getPreco() * desconto));
+		this.adicionaJogo(jogo);
+		
 	}
 
 }

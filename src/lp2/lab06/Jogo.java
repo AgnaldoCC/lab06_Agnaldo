@@ -10,13 +10,13 @@ public class Jogo {
 	private int zerouJogo;
 	private HashSet<String> estilos;
 
-	public Jogo(String nome, double preco) throws Exception{
-		if (nome == null || nome.isEmpty()){
-			throw new Exception("Nome do jogo n„o pode ser nulo ou vazio");
+	public Jogo(String nome, double preco) throws Exception {
+		if (nome == null || nome.isEmpty()) {
+			throw new Exception("Nome do jogo n√£o pode ser nulo ou vazio");
 		}
-		
-		if (preco < 0){
-			throw new Exception("Preco do jogo n„o pode ser negativo");
+
+		if (preco < 0) {
+			throw new Exception("Preco do jogo n√£o pode ser negativo");
 		}
 		this.nome = nome;
 		this.preco = preco;
@@ -25,13 +25,11 @@ public class Jogo {
 		this.zerouJogo = 0;
 		estilos = new HashSet<String>();
 	}
-	
-	public void adicionaEstilo(String novoEstilo){
+
+	public void adicionaEstilo(String novoEstilo) {
 		estilos.add(novoEstilo);
 	}
 
-	
-	
 	public String getNome() {
 		return nome;
 	}
@@ -76,12 +74,12 @@ public class Jogo {
 		if (zerou == true) {
 			zerouJogo += 1;
 		}
-		
+
 		qtdJogada += 1;
-		
+
 		if (score > maiorScore) {
 			setMaiorScore(score);
 		}
 	}
-	
+
 }
