@@ -2,13 +2,12 @@ package lp2.lab06;
 
 import java.util.HashSet;
 
-public class Usuario {
+public abstract class Usuario {
 	private String nome;
 	private String nomeLogin;
-	private HashSet<Jogo> jogos;
-	private double dinheiro;
+	protected HashSet<Jogo> jogos;
+	protected double dinheiro;
 	protected int x2p;
-	protected double desconto;
 
 	public Usuario(String nome, String nomeLogin, double dinheiro, int x2p) throws Exception {
 		if (nome == null || nome.isEmpty()) {
@@ -25,8 +24,8 @@ public class Usuario {
 		this.nomeLogin = nomeLogin;
 		this.nome = nome;
 		jogos = new HashSet<Jogo>();
-		this.dinheiro = dinheiro;
-		this.x2p = x2p;
+		this.dinheiro = 0;
+		this.x2p = 0;
 
 	}
 
@@ -61,6 +60,10 @@ public class Usuario {
 	public void setX2p(int x2p) {
 		this.x2p = x2p;
 	}
+	
+	public void adicionaX2p(int x2p){
+		this.setX2p(this.x2p + x2p);
+	}
 
 	public void adicionaDinheiro(double novo) {
 		dinheiro += novo;
@@ -79,19 +82,7 @@ public class Usuario {
 		throw new Exception("Jogo não encontrado");
 
 	}
-	
-	public void compraJogo(Jogo jogo) throws Exception{
-		if (jogo == null){
-			throw new Exception("Jogo não pode ser nulo");
-		}
-		
-		if (dinheiro < jogo.getPreco()){
-			throw new Exception("Dinheiro insuficiente para comprar esse jogo");
-		}
-		
-		this.setDinheiro(this.dinheiro - (jogo.getPreco() * desconto));
-		this.adicionaJogo(jogo);
-		
-	}
+
+	public abstract void compraJogo(Jogo jogo) throws Exception;
 
 }

@@ -5,24 +5,44 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class JogoTest {
-	
+
 	private Jogo jogo;
-	
+
 	@Test
 	public void testJogo() throws Exception {
-		jogo = new Jogo("No Man's Sky", 50);
-		assertEquals("No Man's Sky", jogo.getNome());
+		jogo = new RPG("World of Warcraft", 50);
+		Jogo jogo1 = new Luta("Injustice", 60);
+		Jogo jogo2 = new Plataforma("Mario", 40);
+		assertEquals("World of Warcraft", jogo.getNome());
+		assertNotEquals("World Of Warcraft", jogo.getNome());
+		assertEquals("Injustice", jogo1.getNome());
+		assertNotEquals("injustice", jogo1.getNome());
+		assertEquals("Mario", jogo2.getNome());
+		assertNotEquals("Mário", jogo2.getNome());
+	}
+
+	@Test(expected = Exception.class)
+	public void testJogoNomeNulo() throws Exception {
+		jogo = new RPG(null, 50);
+	}
+
+	@Test(expected = Exception.class)
+	public void testJogoNomeVazio() throws Exception {
+		jogo = new RPG("", 50);
+	}
+
+	@Test(expected = Exception.class)
+	public void testJogoPrecoNegativo() throws Exception {
+		jogo = new RPG("Skyrim", -5);
 	}
 
 	@Test
-	public void testAdicionaEstilo() {
-		fail("Not yet implemented");
-	}
-
-
-	@Test
-	public void testRegistraJogada() {
-		fail("Not yet implemented");
+	public void testAdicionaEstilo() throws Exception {
+		jogo = new RPG("Skyrim", 50);
+		jogo.adicionaEstilo("Multiplayer");
+		assertEquals(1, jogo.estilos.size());
+		jogo.adicionaEstilo("Online");
+		assertEquals(2, jogo.estilos.size());
 	}
 
 }

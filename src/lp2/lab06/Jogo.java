@@ -2,13 +2,13 @@ package lp2.lab06;
 
 import java.util.HashSet;
 
-public class Jogo {
+public abstract class Jogo {
 	private String nome;
 	private double preco;
 	private int maiorScore;
 	private int qtdJogada;
 	private int zerouJogo;
-	private HashSet<String> estilos;
+	protected HashSet<String> estilos;
 
 	public Jogo(String nome, double preco) throws Exception {
 		if (nome == null || nome.isEmpty()) {
