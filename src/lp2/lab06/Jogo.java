@@ -70,16 +70,6 @@ public abstract class Jogo {
 		this.zerouJogo = zerouJogo;
 	}
 
-	public void registraJogada(int score, boolean zerou) {
-		if (zerou == true) {
-			zerouJogo += 1;
-		}
-
-		qtdJogada += 1;
-
-		if (score > maiorScore) {
-			setMaiorScore(score);
-		}
-	}
+	public abstract int registraJogada(int score, boolean zerou);
 
 }
