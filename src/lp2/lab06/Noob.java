@@ -23,4 +23,8 @@ public class Noob extends Usuario {
 		this.adicionaX2p(qntX2p);
 
 	}
+	
+	public String toString() {
+		return nomeLogin + "\n" + nome + " - Jogador Noob";
+	}
 } 	

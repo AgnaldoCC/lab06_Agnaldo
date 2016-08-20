@@ -12,11 +12,11 @@ public abstract class Jogo {
 
 	public Jogo(String nome, double preco) throws Exception {
 		if (nome == null || nome.isEmpty()) {
-			throw new Exception("Nome do jogo não pode ser nulo ou vazio");
+			throw new Exception("Nome do jogo nao pode ser nulo ou vazio");
 		}
 
 		if (preco < 0) {
-			throw new Exception("Preco do jogo não pode ser negativo");
+			throw new Exception("Preco do jogo nao pode ser negativo");
 		}
 		this.nome = nome;
 		this.preco = preco;

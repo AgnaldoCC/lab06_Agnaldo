@@ -3,23 +3,23 @@ package lp2.lab06;
 import java.util.HashSet;
 
 public abstract class Usuario {
-	private String nome;
-	private String nomeLogin;
+	protected String nome;
+	protected String nomeLogin;
 	protected HashSet<Jogo> jogos;
 	protected double dinheiro;
 	protected int x2p;
 
 	public Usuario(String nome, String nomeLogin, double dinheiro, int x2p) throws Exception {
 		if (nome == null || nome.isEmpty()) {
-			throw new Exception("Nome não pode ser nulo ou vazio");
+			throw new Exception("Nome nao pode ser nulo ou vazio");
 		}
 
 		if (nomeLogin == null || nomeLogin.isEmpty()) {
-			throw new Exception("Nome de login não pode ser nulo ou vazio");
+			throw new Exception("Nome de login nao pode ser nulo ou vazio");
 		}
 
 		if (dinheiro < 0) {
-			throw new Exception("Saldo em dinheiro não pode ser negativo");
+			throw new Exception("Saldo em dinheiro nao pode ser negativo");
 		}
 		this.nomeLogin = nomeLogin;
 		this.nome = nome;
@@ -79,10 +79,12 @@ public abstract class Usuario {
 				jogo.registraJogada(score, zerou);
 			}
 		}
-		throw new Exception("Jogo não encontrado");
+		throw new Exception("Jogo nao encontrado");
 
 	}
 
 	public abstract void compraJogo(Jogo jogo) throws Exception;
+	
+	public abstract String toString();
 
 }

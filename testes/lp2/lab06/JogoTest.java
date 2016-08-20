@@ -18,8 +18,9 @@ public class JogoTest {
 		assertEquals("Injustice", jogo1.getNome());
 		assertNotEquals("injustice", jogo1.getNome());
 		assertEquals("Mario", jogo2.getNome());
-		assertNotEquals("Mário", jogo2.getNome());
+		assertNotEquals("mario", jogo2.getNome());
 	}
+
 
 	@Test(expected = Exception.class)
 	public void testJogoNomeNulo() throws Exception {

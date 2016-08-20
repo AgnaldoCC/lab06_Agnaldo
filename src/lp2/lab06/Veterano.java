@@ -9,7 +9,7 @@ public class Veterano extends Usuario {
 
 	public void compraJogo(Jogo jogo) throws Exception {
 		if (jogo == null) {
-			throw new Exception("Jogo não pode ser nulo");
+			throw new Exception("Jogo nao pode ser nulo");
 		}
 
 		if (this.dinheiro < (jogo.getPreco() - (jogo.getPreco() * 0.2))) {
@@ -23,4 +23,10 @@ public class Veterano extends Usuario {
 		this.adicionaX2p(qntX2p);
 
 	}
+
+	public String toString() {
+		return nomeLogin + "\n" + nome + " - Jogador Veterano";
+	}
+	
+	
 }
