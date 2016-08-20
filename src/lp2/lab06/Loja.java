@@ -30,4 +30,12 @@ public class Loja {
 			}
 		}
 	}
+	
+	public String toString(){
+		String loja = "=== Central P2-CG ===\n\n";
+		for(Usuario usuario : usuarios){
+			loja += usuario.toString() + "\n";
+		}
+		return loja;
+	}
 }

@@ -6,8 +6,8 @@ public abstract class Jogo {
 	private String nome;
 	private double preco;
 	private int maiorScore;
-	private int qtdJogada;
-	private int zerouJogo;
+	protected int qtdJogada;
+	protected int zerouJogo;
 	protected HashSet<String> estilos;
 
 	public Jogo(String nome, double preco) throws Exception {
@@ -70,6 +70,8 @@ public abstract class Jogo {
 		this.zerouJogo = zerouJogo;
 	}
 
-	public abstract int registraJogada(int score, boolean zerou);
+	public abstract int registraJogada(int score, boolean zerou) throws Exception;
+	
+	public abstract String toString();
 
 }

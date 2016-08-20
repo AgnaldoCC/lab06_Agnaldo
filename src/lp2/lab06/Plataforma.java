@@ -10,9 +10,19 @@ public class Plataforma extends Jogo {
 
 	@Override
 	public int registraJogada(int score, boolean zerou) {
+		if (score > getMaiorScore()) {
+			setMaiorScore(score);
+		}
+		qtdJogada += 1;
 		if (zerou) {
+			zerouJogo += 1;
 			return TAXA_X2P_PLATAFORMA;
 		}
 		return 0;
+	}
+
+	public String toString() {
+		return "+ " + getNome() + " - " + "Plataforma:\n" + "==> Jogou " + getQtdJogada() + " vez(es)\n" + "==> Zerou "
+				+ getZerouJogo() + " vez(es)\n" + "==> Maior score: " + getMaiorScore();
 	}
 }
