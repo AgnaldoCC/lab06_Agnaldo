@@ -11,7 +11,7 @@ public abstract class Jogo {
 	protected HashSet<String> estilos;
 
 	public Jogo(String nome, double preco) throws Exception {
-		if (nome == null || nome.isEmpty()) {
+		if (nome == null || nome.trim().isEmpty()) {
 			throw new Exception("Nome do jogo nao pode ser nulo ou vazio");
 		}
 
@@ -34,10 +34,6 @@ public abstract class Jogo {
 		return nome;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
 	public double getPreco() {
 		return preco;
 	}
@@ -58,20 +54,33 @@ public abstract class Jogo {
 		return qtdJogada;
 	}
 
-	public void setQtdJogada(int qtdJogada) {
-		this.qtdJogada = qtdJogada;
-	}
-
 	public int getZerouJogo() {
 		return zerouJogo;
 	}
 
-	public void setZerouJogo(int zerouJogo) {
-		this.zerouJogo = zerouJogo;
+	public abstract int registraJogada(int score, boolean zerou) throws Exception;
+
+	public abstract String toString();
+
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		long temp;
+		temp = Double.doubleToLongBits(preco);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		return result;
 	}
 
-	public abstract int registraJogada(int score, boolean zerou) throws Exception;
-	
-	public abstract String toString();
+	public boolean equals(Object obj) {
+		if (!(obj instanceof Jogo)) {
+			return false;
+		}
+		Jogo jogo = (Jogo) obj;
+		if (getNome().equals(jogo.getNome())) {
+			return true;
+		}
+		return false;
+	}
 
 }
