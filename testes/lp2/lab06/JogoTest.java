@@ -21,7 +21,6 @@ public class JogoTest {
 		assertNotEquals("mario", jogo2.getNome());
 	}
 
-
 	@Test(expected = Exception.class)
 	public void testJogoNomeNulo() throws Exception {
 		jogo = new RPG(null, 50);
@@ -46,4 +45,27 @@ public class JogoTest {
 		assertEquals(2, jogo.estilos.size());
 	}
 
+	@Test
+	public void testRegistraJogada() throws Exception {
+		Jogo jogoRPG = new RPG("World of Warcraft", 50);
+
+		jogoRPG.registraJogada(200, true);
+		equals(200 == jogoRPG.getMaiorScore());
+		equals(1 == jogoRPG.getZerouJogo());
+		equals(1 == jogoRPG.getQtdJogada());
+
+	}
+	
+	@Test
+	public void testToString() throws Exception{
+		Jogo jogoRPG = new RPG("World of Warcraft", 50);
+		Jogo jogoLuta = new Luta("Injustice", 70);
+		Jogo jogoPlataforma = new Plataforma("Mario", 40);
+		jogoRPG.registraJogada(200, true);
+		jogoLuta.registraJogada(300, true);
+		jogoPlataforma.registraJogada(400, true);
+		assertEquals("+ Injustice - Luta:\n==> Jogou 1 vez(es)\n==> Zerou 1 vez(es)\n==> Maior score: 300", jogoLuta.toString());
+		assertEquals("+ World of Warcraft - RPG:\n==> Jogou 1 vez(es)\n==> Zerou 1 vez(es)\n==> Maior score: 200", jogoRPG.toString());
+		assertEquals("+ Mario - Plataforma:\n==> Jogou 1 vez(es)\n==> Zerou 1 vez(es)\n==> Maior score: 400", jogoPlataforma.toString());
+	}
 }
