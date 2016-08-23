@@ -3,14 +3,39 @@ package lp2.lab06;
 import exception.JogoInvalidoException;
 import exception.ValorException;
 
-public class Veterano extends Usuario {
+/**
+ * 
+ * @author Agnaldo Junior
+ *
+ */
 
+
+public class Veterano extends Usuario {
+	
+	/**
+	 * Define o X2P em 1000 e o desconto em 20%.
+	 * 
+	 * @param nome
+	 *            Nome do usuario.
+	 * @param nomeLogin
+	 *            Nome unico do usuario.
+	 * @throws Exception
+	 */
+	
 	public Veterano(String nome, String nomeLogin) throws Exception {
 		super(nome, nomeLogin, 1000);
 		super.desconto = 0.2;
 
 	}
-
+	
+	/**
+	 * Recebe um jogo e se o usuário possuir saldo suficiente, compra.
+	 * 
+	 * @param jogo
+	 *            Jogo a ser comprado
+	 * @throws Exception
+	 */
+	
 	public void compraJogo(Jogo jogo) throws Exception {
 		if (jogo == null) {
 			throw new JogoInvalidoException("Jogo nao pode ser nulo");

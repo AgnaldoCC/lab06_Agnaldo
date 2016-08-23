@@ -4,6 +4,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import enums.Estilos;
+
 public class JogoTest {
 
 	private Jogo jogo;
@@ -39,9 +41,9 @@ public class JogoTest {
 	@Test
 	public void testAdicionaEstilo() throws Exception {
 		jogo = new RPG("Skyrim", 50);
-		jogo.adicionaEstilo("Multiplayer");
+		jogo.adicionaEstilo(Estilos.MULTIPLAYER);
 		assertEquals(1, jogo.estilos.size());
-		jogo.adicionaEstilo("Online");
+		jogo.adicionaEstilo(Estilos.ONLINE);
 		assertEquals(2, jogo.estilos.size());
 	}
 

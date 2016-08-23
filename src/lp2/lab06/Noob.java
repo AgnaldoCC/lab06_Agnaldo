@@ -3,13 +3,28 @@ package lp2.lab06;
 import exception.JogoInvalidoException;
 import exception.ValorException;
 
+/**
+ * 
+ * @author Agnaldo Junior
+ *
+ */
+
+
 public class Noob extends Usuario {
 
 	public Noob(String nome, String nomeLogin) throws Exception {
 		super(nome, nomeLogin, 0);
 		super.desconto = 0.1;
 	}
-
+	
+	/**
+	 * Recebe um jogo e se o usuário possuir saldo suficiente, compra.
+	 * 
+	 * @param jogo
+	 *            Jogo a ser comprado
+	 * @throws Exception
+	 */
+	
 	public void compraJogo(Jogo jogo) throws Exception {
 		if (jogo == null) {
 			throw new JogoInvalidoException("Jogo nao pode ser nulo");

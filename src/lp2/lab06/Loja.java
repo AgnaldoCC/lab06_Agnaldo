@@ -5,6 +5,12 @@ import java.util.ArrayList;
 import exception.StringNulaOuVaziaException;
 import exception.UsuarioInvalidoException;
 
+/**
+ * 
+ * @author Agnaldo Junior
+ *
+ */
+
 public class Loja {
 
 	private ArrayList<Usuario> usuarios;
@@ -13,7 +19,16 @@ public class Loja {
 		usuarios = new ArrayList<Usuario>();
 
 	}
-
+	
+	/**
+	 * Busca um usuario na lista de usuários.
+	 * 
+	 * @param nomeLogin
+	 *    			Nome unico de Usuario
+	 * @return
+	 * @throws Exception
+	 */
+	
 	public Usuario getUsuarioPorLogin(String nomeLogin) throws Exception {
 		if (nomeLogin == null || nomeLogin.trim().isEmpty()) {
 			throw new StringNulaOuVaziaException("Login invalido");
@@ -26,6 +41,12 @@ public class Loja {
 		System.out.println("Usuario nao existe");
 		throw new UsuarioInvalidoException("Usuario nao existe");
 	}
+	
+	/**
+	 * Adiciona usuário
+	 * 
+	 * @param usuario
+	 */
 
 	public void adicionaUsuario(Usuario usuario) throws Exception {
 		if (usuario == null) {
@@ -46,7 +67,14 @@ public class Loja {
 			System.out.println(e.getMessage());
 		}
 	}
-
+	
+	/**
+	 * Vende jogo
+	 * 
+	 * @param nomeLogin
+	 * @param jogo
+	 */
+	
 	public void vendeJogo(String nomeLogin, Jogo jogo) {
 		try {
 			Usuario usuario = getUsuarioPorLogin(nomeLogin);
@@ -63,7 +91,13 @@ public class Loja {
 		}
 		return loja;
 	}
-
+	
+	/**
+	 * Promove um usuario de Noob para Veterano.
+	 * @param usuario
+	 * @throws Exception
+	 */
+	
 	public void upUsuarioNoobtoVeterano(Noob noob) throws Exception {
 		Veterano veterano = new Veterano(noob.getNome(), noob.getNomeLogin());
 		veterano.setDesconto(noob.getDesconto());

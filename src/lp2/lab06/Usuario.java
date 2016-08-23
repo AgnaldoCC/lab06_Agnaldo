@@ -6,6 +6,13 @@ import exception.JogoInvalidoException;
 import exception.StringNulaOuVaziaException;
 import exception.ValorException;
 
+/**
+ * 
+ * @author Agnaldo Junior
+ *
+ */
+
+
 public abstract class Usuario {
 	protected String nome;
 	protected String nomeLogin;
@@ -13,8 +20,21 @@ public abstract class Usuario {
 	protected double dinheiro;
 	protected int x2p;
 	protected double desconto = 0;
-
-	public Usuario(String nome, String nomeLogin, int x2p) throws Exception {
+	
+	/**
+	 * Classe Usuário
+	 * 
+	 * @param nome
+	 *            Nome do usuário.
+	 * @param nomeLogin
+	 *            Login do usuário, usado como identificador único.
+	 * @param x2p
+	 *            Quantidade de X2P inicial, UsuárioNoob começa com 0 e
+	 *            UsuarioVeterano começa com 1000.
+	 * @throws Exception
+	 */
+	
+	public Usuario(String nome, String nomeLogin, int x2p) throws StringNulaOuVaziaException, ValorException{
 		if (nome == null || nome.trim().isEmpty()) {
 			throw new StringNulaOuVaziaException("Nome nao pode ser nulo ou vazio");
 		}
@@ -41,7 +61,13 @@ public abstract class Usuario {
 	public void setJogosComprados(HashSet<Jogo> novosJogos){
 		jogos = novosJogos;
 	}
-
+	
+	/**
+	 * Calcula o preço total de todos os jogos do usuario.
+	 * 
+	 * @return Preço total
+	 */
+	
 	public double getPrecoTotal() {
 		double total = 0;
 		for (Jogo jogo : jogos) {
@@ -89,7 +115,14 @@ public abstract class Usuario {
 	public void setX2p(int x2p) {
 		this.x2p = x2p;
 	}
-
+	
+	/**
+	 * Adiciona X2p
+	 * 
+	 * @param qnt
+	 *            Quantidade a ser adicionada
+	 */
+	
 	public void adicionaX2p(int x2p) {
 		this.setX2p(this.x2p + x2p);
 	}
@@ -97,15 +130,32 @@ public abstract class Usuario {
 	public void adicionaDinheiro(double novo) {
 		dinheiro += novo;
 	}
-
-	public boolean adicionaJogo(Jogo jogo) throws Exception {
+	
+	/**
+	 * Adiciona um jogo na lista de jogos do usuário.
+	 * 
+	 * @param jogo
+	 *            Jogo a ser adicionado
+	 * @throws Exception
+	 */
+	
+	public void adicionaJogo(Jogo jogo) throws JogoInvalidoException {
 		if (jogos.contains(jogo)) {
 			throw new JogoInvalidoException("O usuario ja possui esse jogo.");
 		}
-		return jogos.add(jogo);
+		jogos.add(jogo);
 	}
-
-	public Jogo getJogo(String nome) throws Exception {
+	
+	/**
+	 * Retorna um jogo especifico da lista de jogos.
+	 * 
+	 * @param nomeJogo
+	 *            Nome do jogo a ser pesquisado.
+	 * @return
+	 * @throws Exception
+	 */
+	
+	public Jogo getJogo(String nome) throws JogoInvalidoException {
 		for (Jogo jogo : jogos) {
 			if (jogo.getNome().equals(nome)) {
 				return jogo;
@@ -113,11 +163,31 @@ public abstract class Usuario {
 		}
 		throw new JogoInvalidoException("Jogo nao encontrado");
 	}
-
+	
+	/**
+	 * Checa se o usuário ja possui um jogo.
+	 * 
+	 * @param jogo
+	 *            Jogo a ser checado
+	 * @return
+	 */
+	
 	public boolean temJogo(Jogo jogo) {
 		return jogos.contains(jogo);
 	}
-
+	
+	/**
+	 * Registra a jogada de um jogo.
+	 * 
+	 * @param nomeJogo
+	 *            Nome do jogo
+	 * @param score
+	 *            Score obtido
+	 * @param zerou
+	 *            Se o usuário zerou o jogo
+	 * @throws Exception
+	 */
+	
 	public void registraJogada(String nomeJogo, int score, boolean zerou) throws Exception {
 		if (nome.trim().isEmpty()) {
 			throw new StringNulaOuVaziaException("Nome do jogo nao pode ser vazio");
@@ -128,6 +198,7 @@ public abstract class Usuario {
 		
 		Jogo jogo = getJogo(nomeJogo);
 		x2p += jogo.registraJogada(score, zerou);
+		adicionaX2p(x2p);
 		
 
 	}

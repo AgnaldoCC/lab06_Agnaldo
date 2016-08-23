@@ -6,6 +6,12 @@ import enums.Estilos;
 import exception.StringNulaOuVaziaException;
 import exception.ValorException;
 
+/**
+ * 
+ * @author Agnaldo Junior
+ *
+ */
+
 public abstract class Jogo {
 	private String nome;
 	private double preco;
@@ -13,8 +19,19 @@ public abstract class Jogo {
 	protected int qtdJogada;
 	protected int zerouJogo;
 	protected HashSet<Estilos> estilos;
-
-	public Jogo(String nome, double preco) throws Exception {
+	
+	/**
+	*
+	*@param nome
+	*			Nome do Jogo
+	*@param preco
+	*			Preco do jogo
+	*
+	*@throws Exception
+	*/
+	
+	
+	public Jogo(String nome, double preco) throws StringNulaOuVaziaException, ValorException {
 		if (nome == null || nome.trim().isEmpty()) {
 			throw new StringNulaOuVaziaException("Nome do jogo nao pode ser nulo ou vazio");
 		}
@@ -29,6 +46,8 @@ public abstract class Jogo {
 		this.zerouJogo = 0;
 		estilos = new HashSet<Estilos>();
 	}
+	
+	
 
 	public void adicionaEstilo(Estilos novoEstilo) {
 		estilos.add(novoEstilo);
@@ -61,7 +80,7 @@ public abstract class Jogo {
 	public int getZerouJogo() {
 		return zerouJogo;
 	}
-
+	
 	public abstract int registraJogada(int score, boolean zerou) throws Exception;
 
 	public abstract String toString();
