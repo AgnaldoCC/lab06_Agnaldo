@@ -22,7 +22,7 @@ public class Noob extends Usuario {
 
 		this.adicionaX2p(qntX2p);
 		
-		setDinheiro(getDinheiro() - (jogo.getPreco() - (jogo.getPreco() * 0.1)));
+		setDinheiro(getDinheiro() - (jogo.getPreco() - (jogo.getPreco() * desconto)));
 
 
 	}

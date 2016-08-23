@@ -62,7 +62,7 @@ public class Loja {
 	}
 	
 	public void upUsuarioNoobtoVeretano(Noob noob) throws Exception{
-		Veterano veterano = new Veterano(noob.getNome(),noob.getNomeLogin(), noob.getX2p());
+		Veterano veterano = new Veterano(noob.getNome(),noob.getNomeLogin());
 		veterano.setDesconto(noob.getDesconto());
 		veterano.setDinheiro(noob.getDinheiro());
 		veterano.setJogosComprados(noob.getJogosComprados());
