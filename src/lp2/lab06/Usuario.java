@@ -2,6 +2,10 @@ package lp2.lab06;
 
 import java.util.HashSet;
 
+import exception.JogoInvalidoException;
+import exception.StringNulaOuVaziaException;
+import exception.ValorException;
+
 public abstract class Usuario {
 	protected String nome;
 	protected String nomeLogin;
@@ -12,15 +16,15 @@ public abstract class Usuario {
 
 	public Usuario(String nome, String nomeLogin, int x2p) throws Exception {
 		if (nome == null || nome.trim().isEmpty()) {
-			throw new Exception("Nome nao pode ser nulo ou vazio");
+			throw new StringNulaOuVaziaException("Nome nao pode ser nulo ou vazio");
 		}
 
 		if (nomeLogin == null || nomeLogin.trim().isEmpty()) {
-			throw new Exception("Nome de login nao pode ser nulo ou vazio");
+			throw new StringNulaOuVaziaException("Nome de login nao pode ser nulo ou vazio");
 		}
 
 		if (dinheiro < 0) {
-			throw new Exception("Saldo em dinheiro nao pode ser negativo");
+			throw new ValorException("Saldo em dinheiro nao pode ser negativo");
 		}
 		this.nomeLogin = nomeLogin;
 		this.nome = nome;
@@ -96,7 +100,7 @@ public abstract class Usuario {
 
 	public boolean adicionaJogo(Jogo jogo) throws Exception {
 		if (jogos.contains(jogo)) {
-			throw new Exception("O usuário já possui esse jogo.");
+			throw new JogoInvalidoException("O usuario ja possui esse jogo.");
 		}
 		return jogos.add(jogo);
 	}
@@ -107,27 +111,25 @@ public abstract class Usuario {
 				return jogo;
 			}
 		}
-		throw new Exception("Jogo nao encontrado");
+		throw new JogoInvalidoException("Jogo nao encontrado");
 	}
 
 	public boolean temJogo(Jogo jogo) {
 		return jogos.contains(jogo);
 	}
 
-	public boolean registraJogada(String nomeJogo, int score, boolean zerou) throws Exception {
+	public void registraJogada(String nomeJogo, int score, boolean zerou) throws Exception {
 		if (nome.trim().isEmpty()) {
-			throw new Exception("Nome do jogo nao pode ser vazio");
+			throw new StringNulaOuVaziaException("Nome do jogo nao pode ser vazio");
 		}
 		if (score < 0) {
-			throw new Exception("Score nao pode ser negativo");
+			throw new ValorException("Score nao pode ser negativo");
 		}
-		for (Jogo jogo : jogos) {
-			if (jogo.getNome().equalsIgnoreCase(nomeJogo)) {
-				x2p += jogo.registraJogada(score, zerou);
-				return true;
-			}
-		}
-		return false;
+		
+		Jogo jogo = getJogo(nomeJogo);
+		x2p += jogo.registraJogada(score, zerou);
+		
+
 	}
 
 	public abstract void compraJogo(Jogo jogo) throws Exception;

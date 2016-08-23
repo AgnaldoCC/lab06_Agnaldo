@@ -1,5 +1,7 @@
 package lp2.lab06;
 
+import exception.ValorException;
+
 public class Luta extends Jogo {
 
 	private final int SCORE_MAX = 100000;
@@ -11,7 +13,7 @@ public class Luta extends Jogo {
 	@Override
 	public int registraJogada(int score, boolean zerou) throws Exception {
 		if (score > SCORE_MAX) {
-			throw new Exception("Score ultrapassou o maximo");
+			throw new ValorException("Score ultrapassou o maximo");
 		}
 		int X2P = 0;
 		if (score > getMaiorScore()) {

@@ -2,27 +2,29 @@ package lp2.lab06;
 
 import java.util.ArrayList;
 
-public class Loja {
+import exception.StringNulaOuVaziaException;
+import exception.UsuarioInvalidoException;
 
-	private final int X2P_NECESSARIO;
+public class Loja {
 
 	private ArrayList<Usuario> usuarios;
 
 	public Loja() {
 		usuarios = new ArrayList<Usuario>();
-		X2P_NECESSARIO = 1000;
+
 	}
 
 	public Usuario getUsuarioPorLogin(String nomeLogin) throws Exception {
 		if (nomeLogin == null || nomeLogin.trim().isEmpty()) {
-			throw new Exception("Login invalido");
+			throw new StringNulaOuVaziaException("Login invalido");
 		}
 		for (Usuario usuario : usuarios) {
-			if (usuario.getNomeLogin().equals(nomeLogin))
-				;
-			return usuario;
+			if (usuario.getNomeLogin().equals(nomeLogin)) {
+				return usuario;
+			}
 		}
-		throw new Exception("Usuario nao existe");
+		System.out.println("Usuario nao existe");
+		throw new UsuarioInvalidoException("Usuario nao existe");
 	}
 
 	public void adicionaUsuario(Usuario usuario) throws Exception {
@@ -32,23 +34,24 @@ public class Loja {
 		if (!(usuarios.contains(usuario))) {
 			usuarios.add(usuario);
 		}
-		throw new Exception("Usuario ja existe");
+		System.out.println("Usuario ja existe");
+		throw new UsuarioInvalidoException("Usuario ja existe");
 	}
 
-	public void addDinheiro(String nomeLogin, double dinheiro)  {
-		try{
+	public void addDinheiro(String nomeLogin, double dinheiro) {
+		try {
 			Usuario usuario = getUsuarioPorLogin(nomeLogin);
 			usuario.adicionaDinheiro(dinheiro);
-		}catch (Exception e){
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 	}
 
 	public void vendeJogo(String nomeLogin, Jogo jogo) {
-		try{
+		try {
 			Usuario usuario = getUsuarioPorLogin(nomeLogin);
 			usuario.compraJogo(jogo);
-		}catch (Exception e){
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 	}
@@ -60,9 +63,9 @@ public class Loja {
 		}
 		return loja;
 	}
-	
-	public void upUsuarioNoobtoVeretano(Noob noob) throws Exception{
-		Veterano veterano = new Veterano(noob.getNome(),noob.getNomeLogin());
+
+	public void upUsuarioNoobtoVeterano(Noob noob) throws Exception {
+		Veterano veterano = new Veterano(noob.getNome(), noob.getNomeLogin());
 		veterano.setDesconto(noob.getDesconto());
 		veterano.setDinheiro(noob.getDinheiro());
 		veterano.setJogosComprados(noob.getJogosComprados());

@@ -1,5 +1,8 @@
 package lp2.lab06;
 
+import exception.JogoInvalidoException;
+import exception.ValorException;
+
 public class Veterano extends Usuario {
 
 	public Veterano(String nome, String nomeLogin) throws Exception {
@@ -10,11 +13,11 @@ public class Veterano extends Usuario {
 
 	public void compraJogo(Jogo jogo) throws Exception {
 		if (jogo == null) {
-			throw new Exception("Jogo nao pode ser nulo");
+			throw new JogoInvalidoException("Jogo nao pode ser nulo");
 		}
 
 		if (this.dinheiro < (jogo.getPreco() - (jogo.getPreco() * getDesconto()))) {
-			throw new Exception("Dinheiro insuficiente para comprar esse jogo");
+			throw new ValorException("Dinheiro insuficiente para comprar esse jogo");
 		}
 
 		this.jogos.add(jogo);

@@ -2,31 +2,35 @@ package lp2.lab06;
 
 import java.util.HashSet;
 
+import enums.Estilos;
+import exception.StringNulaOuVaziaException;
+import exception.ValorException;
+
 public abstract class Jogo {
 	private String nome;
 	private double preco;
 	private int maiorScore;
 	protected int qtdJogada;
 	protected int zerouJogo;
-	protected HashSet<String> estilos;
+	protected HashSet<Estilos> estilos;
 
 	public Jogo(String nome, double preco) throws Exception {
 		if (nome == null || nome.trim().isEmpty()) {
-			throw new Exception("Nome do jogo nao pode ser nulo ou vazio");
+			throw new StringNulaOuVaziaException("Nome do jogo nao pode ser nulo ou vazio");
 		}
 
 		if (preco < 0) {
-			throw new Exception("Preco do jogo nao pode ser negativo");
+			throw new ValorException("Preco do jogo nao pode ser negativo");
 		}
 		this.nome = nome;
 		this.preco = preco;
 		this.maiorScore = 0;
 		this.qtdJogada = 0;
 		this.zerouJogo = 0;
-		estilos = new HashSet<String>();
+		estilos = new HashSet<Estilos>();
 	}
 
-	public void adicionaEstilo(String novoEstilo) {
+	public void adicionaEstilo(Estilos novoEstilo) {
 		estilos.add(novoEstilo);
 	}
 
