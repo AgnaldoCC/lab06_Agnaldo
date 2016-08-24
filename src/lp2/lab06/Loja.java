@@ -49,7 +49,7 @@ public class Loja {
 	 * @throws Exception
 	 */
 
-	public void adicionaUsuario(Usuario usuario) throws Exception {
+	public void adicionaUsuario(Usuario usuario) throws UsuarioInvalidoException {
 		if (usuario == null) {
 			throw new UsuarioInvalidoException("Usuario nao pode ser nulo");
 		}
@@ -99,13 +99,14 @@ public class Loja {
 	 * @throws Exception
 	 */
 	
-	public void upUsuarioNoobtoVeterano(Noob noob) throws Exception {
-		Veterano veterano = new Veterano(noob.getNome(), noob.getNomeLogin());
-		veterano.setDesconto(noob.getDesconto());
-		veterano.setDinheiro(noob.getDinheiro());
-		veterano.setJogosComprados(noob.getJogosComprados());
-		veterano.setX2p(noob.getX2p());
-		usuarios.remove(noob);
-		usuarios.add(veterano);
+	public void upUsuarioNoobtoVeterano(String nomeLogin) throws Exception {
+		Usuario usuario = getUsuarioPorLogin(nomeLogin);
+		Veterano novoUsuario = new Veterano(usuario.getNome(), usuario.getNomeLogin());
+		novoUsuario.setJogosComprados(usuario.getJogosComprados());
+		novoUsuario.setDinheiro(usuario.getDinheiro());
+		novoUsuario.setX2p(usuario.getX2p());
+		novoUsuario.setPontoJogoLuta(usuario.getPontoJogoLuta());
+		usuarios.remove(usuario);
+		usuarios.add(novoUsuario);
 	}
 }

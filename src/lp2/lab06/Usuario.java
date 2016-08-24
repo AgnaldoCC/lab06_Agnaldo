@@ -20,6 +20,7 @@ public abstract class Usuario {
 	protected double dinheiro;
 	protected int x2p;
 	protected double desconto = 0;
+	protected int pontoJogoLuta;
 	
 	/**
 	 * Classe Usuário
@@ -51,6 +52,7 @@ public abstract class Usuario {
 		jogos = new HashSet<Jogo>();
 		this.dinheiro = 0;
 		this.x2p = 0;
+		this.pontoJogoLuta = 0;
 
 	}
 	
@@ -74,6 +76,14 @@ public abstract class Usuario {
 			total += jogo.getPreco();
 		}
 		return total;
+	}
+	
+	public int getPontoJogoLuta() {
+		return pontoJogoLuta;
+	}
+
+	public void setPontoJogoLuta(int pontoJogoLuta) {
+		this.pontoJogoLuta = pontoJogoLuta;
 	}
 
 	public String getNome() {
