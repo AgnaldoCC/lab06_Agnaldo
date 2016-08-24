@@ -1,6 +1,6 @@
 package lp2.lab06;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 
 import exception.StringNulaOuVaziaException;
 import exception.UsuarioInvalidoException;
@@ -13,10 +13,10 @@ import exception.UsuarioInvalidoException;
 
 public class Loja {
 
-	private ArrayList<Usuario> usuarios;
+	private HashSet<Usuario> usuarios;
 
 	public Loja() {
-		usuarios = new ArrayList<Usuario>();
+		usuarios = new HashSet<Usuario>();
 
 	}
 	
@@ -24,8 +24,8 @@ public class Loja {
 	 * Busca um usuario na lista de usuários.
 	 * 
 	 * @param nomeLogin
-	 *    			Nome unico de Usuario
-	 * @return
+	 *    	Nome unico de Usuario
+	 * @return Usuario
 	 * @throws Exception
 	 */
 	
@@ -46,11 +46,12 @@ public class Loja {
 	 * Adiciona usuário
 	 * 
 	 * @param usuario
+	 * @throws Exception
 	 */
 
 	public void adicionaUsuario(Usuario usuario) throws Exception {
 		if (usuario == null) {
-			throw new Exception("Usuario nao pode ser nulo");
+			throw new UsuarioInvalidoException("Usuario nao pode ser nulo");
 		}
 		if (!(usuarios.contains(usuario))) {
 			usuarios.add(usuario);

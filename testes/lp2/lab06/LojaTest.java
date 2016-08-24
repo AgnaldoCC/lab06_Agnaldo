@@ -2,13 +2,30 @@ package lp2.lab06;
 
 import static org.junit.Assert.*;
 
+import java.util.HashSet;
+
+import org.junit.Before;
 import org.junit.Test;
 
 public class LojaTest {
-
+	
+	private HashSet<Usuario> usuarios;
+	private Usuario usuario;
+	
+	@Before
+	public void criaLoja() throws Exception{
+		usuarios = new HashSet<Usuario>();
+		usuario = new Noob("Agnaldo", "agnaldo.junior");
+	}
+	
 	@Test
 	public void testGetUsuarioPorLogin() {
-		fail("Not yet implemented");
+		
+	}
+	
+	@Test(expected = Exception.class)
+	public void testGetUsuarioPorLoginNull() {
+		String nomeLogin = null;
 	}
 
 	@Test

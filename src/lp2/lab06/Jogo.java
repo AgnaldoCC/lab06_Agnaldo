@@ -23,9 +23,9 @@ public abstract class Jogo {
 	/**
 	*
 	*@param nome
-	*			Nome do Jogo
+	*		Nome do Jogo
 	*@param preco
-	*			Preco do jogo
+	*		Preco do jogo
 	*
 	*@throws Exception
 	*/
